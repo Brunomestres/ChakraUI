@@ -17,13 +17,23 @@ const PaginatorMovie = ({ totalPages, page, setPage }: Props) => (
 		pagesQuantity={totalPages}
 		currentPage={page}
 		onPageChange={(e) => setPage(e)}
-		outerLimit={3}
-		innerLimit={5}
+		outerLimit={2}
+		innerLimit={3}
 	>
-		<Container align="center" justify="space-between" w="50%" p={4}>
-			<Previous>Anterior</Previous>
+		<Container
+			align="center"
+			margin="auto"
+			justify="space-between"
+			w="40%"
+			p={4}
+		>
+			<Previous mr="2%" fontSize="small">
+        Anterior
+			</Previous>
 			<PageGroup isInline align="center" />
-			<Next>Próximo</Next>
+			<Next ml="2%" fontSize="small">
+        Próximo
+			</Next>
 		</Container>
 	</Paginator>
 );

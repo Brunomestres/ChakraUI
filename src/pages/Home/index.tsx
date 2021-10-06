@@ -1,6 +1,5 @@
 import React from "react";
 import { observer, useLocalObservable } from "mobx-react-lite";
-import { Box } from "@chakra-ui/layout";
 import HeaderSearch from "../../components/HeaderSearch";
 import MovieTrending from "../../components/MovieTrending";
 import MovieSearch from "../../components/MovieSearch";
@@ -12,7 +11,6 @@ const Home = () => {
 	return (
 		<>
 			<HeaderSearch setSearchStore={movieStore.setSearch} />
-			<MovieTrending movieTrending={movieStore.getTranding} />
 			{movieStore.moviesSearch.results.length > 0 ? (
 				<>
 					<MovieSearch moviesSearch={movieStore.moviesSearch.results} />
@@ -23,7 +21,7 @@ const Home = () => {
 					/>
 				</>
 			) : (
-				<Box>Os resultados aperecem aqui.</Box>
+				<MovieTrending movieTrending={movieStore.getTranding} />
 			)}
 		</>
 	);

@@ -6,9 +6,8 @@ import {
 	reaction,
 	IReactionDisposer,
 } from "mobx";
-import { api } from "../services/api";
+import { api, API_KEY } from "../services/api";
 import { Movie } from "../interfaces/movie";
-import axios from "axios";
 export class MovieStore {
 	public initialState = {
 		page: 0,
@@ -59,8 +58,8 @@ export class MovieStore {
 		this.search = search;
 	};
 	public fetchTrending = async () => {
-		const response = await axios.get(
-			"https://api.themoviedb.org/3/trending/movie/day?api_key=e4754b23001f38ed6b6b09be083d1dd8&language=pt-BR",
+		const response = await api.get(
+			"trending/movie/day?api_key=e4754b23001f38ed6b6b09be083d1dd8&language=pt-BR",
 		);
 		this.setMoviesTrending(response.data);
 	};
@@ -75,7 +74,9 @@ export class MovieStore {
 
 	public fetchMovie = async () => {
 		try {
-			const response = await api.get(`&query=${this.search}&page=${this.page}`);
+			const response = await api.get(
+				`search/movie?api_key=${API_KEY}&language=pt-BR&include_adult=true&query=${this.search}&page=${this.page}`,
+			);
 			this.setMoviesSearch(response.data);
 		} catch (error) {
 			this.cleanMoviesSearch();

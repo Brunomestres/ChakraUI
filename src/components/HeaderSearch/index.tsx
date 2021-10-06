@@ -5,11 +5,10 @@ import { observer } from "mobx-react-lite";
 interface Props {
 	setSearchStore: (search: string) => void;
 }
-const HeaderSearch = ({ setSearchStore  }: Props) => {
+const HeaderSearch = ({ setSearchStore }: Props) => {
 	const [search, setSearch] = useState("");
 	useEffect(() => {
 		setSearchStore(search);
-
 	}, [search]);
 	return (
 		<Box

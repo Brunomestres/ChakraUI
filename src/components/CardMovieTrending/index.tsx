@@ -17,11 +17,7 @@ const CardMovieTrending = ({ movie }: Props) => (
 			src={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
 			alt={movie.title}
 		/>
-		<Heading
-			as="h1"
-			fontSize="small"
-			color="black"
-		>
+		<Heading as="h1" fontSize="small" color="black">
 			{movie.title}
 		</Heading>
 	</Box>
