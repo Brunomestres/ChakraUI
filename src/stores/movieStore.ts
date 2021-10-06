@@ -18,29 +18,36 @@ export class MovieStore {
 	};
 	public disposer: IReactionDisposer;
 	public search = "";
+	public page = 1;
 	public moviesSearch: Movie = this.initialState;
 	public moviesTrending: Movie = this.initialState;
 
 	constructor() {
 		makeObservable(this, {
 			search: observable,
+			page: observable,
 			moviesSearch: observable,
 			moviesTrending: observable,
 			setSearch: action,
 			setMoviesSearch: action,
 			setMoviesTrending: action,
 			cleanMoviesSearch: action,
+			setPage: action,
 			getTranding: computed,
 		});
 		this.fetchTrending();
 
 		this.disposer = reaction(
-			() => this.search,
+			() => [this.search, this.page],
 			() => {
 				this.fetchMovie();
 			},
 		);
 	}
+
+	public setPage = (page: number) => {
+		this.page = page;
+	};
 
 	public setMoviesSearch = (movies: Movie) => {
 		this.moviesSearch = movies;
@@ -68,7 +75,7 @@ export class MovieStore {
 
 	public fetchMovie = async () => {
 		try {
-			const response = await api.get(`&query=${this.search}`);
+			const response = await api.get(`&query=${this.search}&page=${this.page}`);
 			this.setMoviesSearch(response.data);
 		} catch (error) {
 			this.cleanMoviesSearch();

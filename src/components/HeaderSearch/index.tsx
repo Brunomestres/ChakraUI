@@ -18,6 +18,7 @@ const HeaderSearch = ({ setSearchStore  }: Props) => {
 			bgGradient="linear(to-l, #1EBBFA, #1235F5)"
 			borderRadius="3px"
 			m="auto"
+			mb="15px"
 		>
 			<Box ml="15px">
 				<Heading as="h1" size="2xl" color="whiteAlpha.800">
@@ -27,7 +28,7 @@ const HeaderSearch = ({ setSearchStore  }: Props) => {
           Milhões de Filmes, Séries e Pessoas para Descobrir. Explore já.
 				</Heading>
 			</Box>
-			<Stack mt="50px" ml="15px" w="65%">
+			<Stack mt="50px" ml="15px" w="75%">
 				<Input
 					borderRadius="full"
 					backgroundColor="white"
