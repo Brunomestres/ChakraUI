@@ -58,10 +58,15 @@ export class MovieStore {
 		this.search = search;
 	};
 	public fetchTrending = async () => {
-		const response = await api.get(
-			"trending/movie/day?api_key=e4754b23001f38ed6b6b09be083d1dd8&language=pt-BR",
-		);
-		this.setMoviesTrending(response.data);
+		try {
+			const response = await api.get(
+				"trending/movie/day?api_key=e4754b23001f38ed6b6b09be083d1dd8&language=pt-BR",
+			);
+			this.setMoviesTrending(response.data);
+		} catch (error) {
+			// eslint-disable-next-line no-console
+			console.log(error);
+		}
 	};
 
 	public get getTranding() {
